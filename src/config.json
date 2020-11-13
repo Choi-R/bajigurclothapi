@@ -1,17 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "database_development",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "use_env_variable": "postgres://jvgrozvh:QKIT9ubBvGUnOEPo2xYikLQu32TdP-L3@john.db.elephantsql.com:5432/jvgrozvh"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "use_env_variable": "postgres://rsuugtoj:H9iZIR74L5sCyjgTFbK9NppNm7oGZA_G@rosie.db.elephantsql.com:5432/rsuugtoj"
   },
   "production": {
     "username": "root",
