@@ -1,9 +1,17 @@
 {
   "development": {
-    "use_env_variable": "postgres://jvgrozvh:QKIT9ubBvGUnOEPo2xYikLQu32TdP-L3@john.db.elephantsql.com:5432/jvgrozvh"
+    "username": "jvgrozvh",
+    "password": "QKIT9ubBvGUnOEPo2xYikLQu32TdP-L3",
+    "database": "jvgrozvh",
+    "host": "john.db.elephantsql.com",
+    "dialect": "postgres"
   },
   "test": {
-    "use_env_variable": "postgres://rsuugtoj:H9iZIR74L5sCyjgTFbK9NppNm7oGZA_G@rosie.db.elephantsql.com:5432/rsuugtoj"
+    "username": "rsuugtoj",
+    "password": "H9iZIR74L5sCyjgTFbK9NppNm7oGZA_G",
+    "database": "rsuugtoj",
+    "host": "rosie.db.elephantsql.com",
+    "dialect": "postgres"
   },
   "production": {
     "username": "root",

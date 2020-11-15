@@ -1,0 +1,146 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "Dokumentasi untuk LatihID Back End Case Study - Choirul",
+      "version": "1.0.0",
+      "title": "Dokumentasi",
+      "contact": {
+        "email": "choirul.rahmaditya@mail.ugm.ac.id"
+      }
+    },
+    "host": "",
+    "basePath": "/api/v1",
+    "tags": [
+      {
+        "name": "User Collection",
+        "description": ""
+      }
+    ],
+    "paths": {
+      "/user": {
+        "post": {
+          "tags": [
+            "User Collection"
+          ],
+          "summary": "Menyimpan data baru",
+          "description": "",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Choi"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Penyimpanan data berhasil dilakukan !"
+            },
+            "406": {
+              "description": "Error"
+            }
+          }
+        }
+      },
+      "/get/{idAtauNama}": {
+        "get": {
+          "tags": [
+            "User Collection"
+          ],
+          "summary": "Mencari data berdasarkan id.",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "idAtauNama",
+              "in": "path",
+              "description": "Id dari data yang ingin diambil",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Sukses"
+            },
+            "404": {
+              "description": "Tidak ada data yang cocok dengan id atau nama yang diberikan"
+            }
+          }
+        }
+      },
+      "/all": {
+        "get": {
+          "tags": [
+            "User Collection"
+          ],
+          "summary": "Mengambil semua data yang ada",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+          ],
+          "responses": {
+            "200": {
+              "description": "Sukses"
+            },
+            "404": {
+              "description": "Error"
+            }
+          }
+        }
+      }
+    },
+    "securityDefinitions": {
+      "Authorization": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "definitions": {
+      "User": {
+        "type": "object",
+        "properties": {
+            "nama": {
+              "type": "string",
+              "example": "Choi"
+            },
+            "email": {
+              "type": "string",
+              "example": "choirul.rahmaditya@mail.ugm.ac.id"
+            },
+            "nomorHP": {
+              "type": "string",
+              "example": "08123456789"
+            },
+            "pekerjaan": {
+              "type": "string",
+              "example": "Back End Developer"
+            }
+          }
+      }
+    },
+    "externalDocs": {
+      "description": "Backend Repository",
+      "url": "https://github.com/Choi-R/bajigurclothapi"
+    }
+  }
