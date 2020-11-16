@@ -1,9 +1,9 @@
 {
     "swagger": "2.0",
     "info": {
-      "description": "Dokumentasi untuk LatihID Back End Case Study - Choirul",
+      "description": "Documentation for Bajigur Cloth's API",
       "version": "1.0.0",
-      "title": "Dokumentasi",
+      "title": "Documentation",
       "contact": {
         "email": "choirul.rahmaditya@mail.ugm.ac.id"
       }
@@ -13,6 +13,10 @@
     "tags": [
       {
         "name": "User Collection",
+        "description": ""
+      },
+      {
+        "name": "Item Collection",
         "description": ""
       }
     ],
@@ -42,6 +46,88 @@
                   "name": {
                     "type": "string",
                     "example": "Choi"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "choi@mail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "password"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "SUCCESS"
+            },
+            "422": {
+              "description": "ERROR"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "User Collection"
+          ],
+          "summary": "Get profile detail",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "Authorization",
+              "in": "header",
+              "description": "JWT Token. Get it from register or login",
+              "type": "string"
+            },
+            {
+              "name": "name",
+              "in": "query",
+              "description": "Name of the user. If empty, will get one's own profile",
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "SUCCCESS"
+            },
+            "422": {
+              "description": "ERROR"
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "User Collection"
+          ],
+          "summary": "Login",
+          "description": "",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "choi@mail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "password"
                   }
                 }
               }
@@ -49,61 +135,212 @@
           ],
           "responses": {
             "200": {
-              "description": "Penyimpanan data berhasil dilakukan !"
+              "description": "SUCCESS"
             },
-            "406": {
-              "description": "Error"
+            "422": {
+              "description": "ERROR"
             }
           }
         }
       },
-      "/get/{idAtauNama}": {
+      "/history": {
         "get": {
           "tags": [
             "User Collection"
           ],
-          "summary": "Mencari data berdasarkan id.",
+          "summary": "Get one's histories.",
           "description": "",
           "produces": [
             "application/json"
           ],
           "parameters": [
             {
-              "name": "idAtauNama",
-              "in": "path",
-              "description": "Id dari data yang ingin diambil",
+              "name": "authorization",
+              "in": "header",
+              "description": "JWT Token. Get it from register or login",
               "required": true,
               "type": "string"
             }
           ],
           "responses": {
             "200": {
-              "description": "Sukses"
+              "description": "SUCCESS"
             },
             "404": {
-              "description": "Tidak ada data yang cocok dengan id atau nama yang diberikan"
+              "description": "ERROR"
             }
           }
         }
       },
-      "/all": {
-        "get": {
+      "/item": {
+        "post": {
           "tags": [
-            "User Collection"
+            "Item Collection"
           ],
-          "summary": "Mengambil semua data yang ada",
+          "summary": "",
           "description": "",
           "produces": [
             "application/json"
           ],
           "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "description": "JWT Token. Get it from register or login",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "T-Shirt"
+                  },
+                  "category": {
+                    "type": "string",
+                    "example": "Shirt"
+                  },
+                  "price": {
+                    "type": "integer",
+                    "example": 150000
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "This T-Shirt is so good"
+                  },
+                  "totalStock": {
+                    "type": "integer",
+                    "example": 10
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "SUCCESS"
+            },
+            "422": {
+              "description": "ERROR"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Item Collection"
+          ],
+          "summary": "Get a list of items",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "filter",
+              "in": "query",
+              "description": "Category filter. Maybe only shirt?",
+              "type": "string"
+            }
           ],
           "responses": {
             "200": {
-              "description": "Sukses"
+              "description": "SUCCESS"
             },
             "404": {
-              "description": "Error"
+              "description": "ERROR"
+            }
+          }
+        }
+      },
+      "/item/{itemId}": {
+        "get": {
+          "tags": [
+            "Item Collection"
+          ],
+          "summary": "Get a detail of one item. Will also record it in user's history if the headers.authorization exist.",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "description": "JWT Token. Get it from register or login",
+              "type": "string"
+            },
+            {
+              "name": "itemId",
+              "in": "path",
+              "description": "the item's id",
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "SUCCESS"
+            },
+            "404": {
+              "description": "ERROR"
+            }
+          }
+        }
+      },
+      "/buy/{itemId}": {
+        "put": {
+          "tags": [
+            "Item Collection"
+          ],
+          "summary": "Buy an item",
+          "description": "",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "description": "JWT Token. Get it from register or login",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "itemId",
+              "in": "path",
+              "description": "the item's id",
+              "type": "string"
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "address": {
+                    "type": "string",
+                    "example": "Mataram, NTB"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "SUCCESS"
+            },
+            "422": {
+              "description": "ERROR"
             }
           }
         }

@@ -9,6 +9,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       itemId: {
+        type: Sequelize.INTEGER,
+        // references: {
+        //   model: 'Items', // name of Target model
+        //   key: 'id'
+        // }
+      },
+      userId: {
         type: Sequelize.INTEGER
       },
       createdAt: {

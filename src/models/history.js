@@ -14,10 +14,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   History.init({
-    itemId: DataTypes.INTEGER
+    itemId: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'History',
   });
+  // Order.associate = models => {
+  //   Order.belongsTo(models.Customer);
+  // };
   return History;
 };

@@ -11,16 +11,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // Item.belongsTo(models.History)
     }
   };
   Item.init({
     name: DataTypes.STRING,
-    category: Sequelize.STRING,
-    price: Sequelize.INTEGER,
-    description: Sequelize.STRING,
-    image: Sequelize.STRING,
-    totalStock: Sequelize.INTEGER,
-    totalSold: Sequelize.INTEGER,
+    category: DataTypes.STRING,
+    price: DataTypes.INTEGER,
+    description: DataTypes.STRING,
+    image: DataTypes.STRING,
+    totalStock: DataTypes.INTEGER,
+    totalSold: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Item',

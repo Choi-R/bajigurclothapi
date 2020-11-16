@@ -20,7 +20,7 @@ module.exports = {
       },
       isAdmin: {
         type: Sequelize.BOOLEAN,
-        default: false
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,

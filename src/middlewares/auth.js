@@ -2,9 +2,11 @@ const jwt = require('jsonwebtoken')
 
 exports.authenticate = (req, res, next) => {
     try {
-        let token = req.headers.authorization;
-        let payload = jwt.verify(token, process.env.SECRET_KEY);
-        req.user = payload;
+        if (req.headers.authorization) {
+            let token = req.headers.authorization;
+            let payload = jwt.verify(token, process.env.SECRET_KEY);
+            req.user = payload;
+        }
         next()
     }
     catch (err) {
