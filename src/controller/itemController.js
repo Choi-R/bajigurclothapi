@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken');
 const {success, error} = require('../helpers/response')
 const index = require('../models/index')
 const User = index.User

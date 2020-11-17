@@ -58,7 +58,7 @@ exports.getHistory = async (req, res) => {
     try {
         let histories = await History.findAll({
             attributes: {exclude: ['userId']},
-            include: Item,
+            include: [{ all: true, nested: true }],
             where: {userId: req.user.id}})
         success(res, histories, 200)
     }
