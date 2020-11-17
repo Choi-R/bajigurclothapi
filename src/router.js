@@ -7,6 +7,7 @@ router.post('/user', userController.register)
 router.put('/user', userController.login)
 router.get('/user', authenticate, userController.getProfile)
 router.get('/history', authenticate, userController.getHistory)
+router.get('/order', authenticate, userController.getOrder)
 
 router.post('/item', authenticate, itemController.createItem)
 router.get('/item', itemController.getAllItem)

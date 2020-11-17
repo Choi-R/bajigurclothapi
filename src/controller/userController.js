@@ -3,8 +3,8 @@ const jwt = require('jsonwebtoken');
 const {success, error} = require('../helpers/response')
 const index = require('../models/index')
 const User = index.User
-const Item = index.Item
 const History = index.History
+const Order = index.Order
 
 exports.register = async (req, res) => {
     try {
@@ -61,6 +61,16 @@ exports.getHistory = async (req, res) => {
             include: [{ all: true, nested: true }],
             where: {userId: req.user.id}})
         success(res, histories, 200)
+    }
+    catch(err) {error(res, err, 422)}
+}
+
+exports.getOrder = async (req, res) => {
+    try {
+        let orders = await Order.findAll({
+            attributes: {exclude: ['userId']},
+            where: {userId: req.user.id}})
+        success(res, orders, 200)
     }
     catch(err) {error(res, err, 422)}
 }

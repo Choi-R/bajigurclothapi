@@ -172,6 +172,35 @@
           }
         }
       },
+      "/order": {
+        "get": {
+          "tags": [
+            "User Collection"
+          ],
+          "summary": "Get one's orders.",
+          "description": "",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "description": "JWT Token. Get it from register or login",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "SUCCESS"
+            },
+            "404": {
+              "description": "ERROR"
+            }
+          }
+        }
+      },
       "/item": {
         "post": {
           "tags": [

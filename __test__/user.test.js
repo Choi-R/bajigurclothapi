@@ -126,6 +126,18 @@ describe('GET /api/v1/history', function () {
     })
 })
 
+describe('GET /api/v1/order', function () {
+    test(`should get one's orders`, function (done) {
+        request.get(`/api/v1/order`)
+            .set('Content-Type', 'application/json')
+            .set('Authorization', token)
+            .then((res) => {
+                expect(res.statusCode).toBe(200)
+                done()
+            })
+    })
+})
+
 describe('POST /api/v1/item', function () {
     test('should create an item', function (done) {
         request.post(`/api/v1/item`)
