@@ -15,7 +15,12 @@ exports.register = async (req, res) => {
             isAdmin: req.body.isAdmin
         })
         let token = jwt.sign({id: newUser.id, isAdmin: newUser.isAdmin}, process.env.SECRET_KEY)
-        success(res, {...newUser.dataValues, token}, 201)
+
+        success(res, {
+            name: req.body.name,
+            email: req.body.email,
+            token: token
+        }, 201)
     }
     catch(err) {error(res, err, 422)}
 }
@@ -33,10 +38,16 @@ exports.getProfile = async (req, res) => {
     try {
         let user
         if (req.query.name) {
-            user = await User.findOne({where: {name: req.query.name}})
+            user = await User.findOne({
+                attributes: {exclude: ['password', 'isAdmin']},
+                where: {name: req.query.name}
+            })
         }
         else if (req.user) {
-            user = await User.findByPk(req.user.id)
+            user = await User.findOne({                
+                attributes: {exclude: ['password', 'isAdmin']},
+                where: {id: req.user.id}
+        })
         }
         success(res, user, 200)
     }
